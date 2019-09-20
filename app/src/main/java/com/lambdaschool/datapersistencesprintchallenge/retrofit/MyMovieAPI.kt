@@ -2,7 +2,7 @@ package com.lambdaschool.datapersistencesprintchallenge.retrofit
 
 import com.google.gson.Gson
 import com.lambdaschool.sprint4challenge_mymovies.apiaccess.MovieConstants
-import com.lambdaschool.sprint4challenge_mymovies.model.MovieOverview
+import com.lambdaschool.sprint4challenge_mymovies.model.MovieSearchResult
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Call
@@ -14,8 +14,10 @@ import java.util.concurrent.TimeUnit
 
 interface MyMovieAPI {
 
+    //https://api.themoviedb.org/3/search/movie?api_key=359211348348a13a2b996217f7538f45&language=en-US&query=Batman&page=1&include_adult=false
+
     @GET("${MovieConstants.SEARCH_ENDPOINT}{name}${MovieConstants.FIXED_QUERY_PARAMS_2}")
-    fun getMovieByName(@Path("name") movieName: String): Call<MovieOverview>
+    fun getMovieByName(@Path("name") movieName: String): Call<MovieSearchResult>
 
     class Factory {
 
