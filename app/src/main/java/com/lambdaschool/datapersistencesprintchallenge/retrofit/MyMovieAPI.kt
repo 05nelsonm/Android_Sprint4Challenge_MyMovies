@@ -10,14 +10,15 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
 import retrofit2.http.Path
+import retrofit2.http.Query
 import java.util.concurrent.TimeUnit
 
 interface MyMovieAPI {
 
     //https://api.themoviedb.org/3/search/movie?api_key=359211348348a13a2b996217f7538f45&language=en-US&query=Batman&page=1&include_adult=false
 
-    @GET("${MovieConstants.SEARCH_ENDPOINT}{name}${MovieConstants.FIXED_QUERY_PARAMS_2}")
-    fun getMovieByName(@Path("name") movieName: String): Call<MovieSearchResult>
+    @GET("${MovieConstants.SEARCH_MOVIES_ENDPOINT}")
+    fun getMovieByName(@Query("query") movieTitle: String, @Query("api_key") apiKey: String = MovieConstants.API_KEY_PARAM) : Call<MovieSearchResult>
 
     class Factory {
 
